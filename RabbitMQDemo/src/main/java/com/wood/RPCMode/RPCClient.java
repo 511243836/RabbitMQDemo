@@ -1,4 +1,4 @@
-package RPCMode;
+package com.wood.RPCMode;
 
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.AMQP.BasicProperties;
