@@ -2,7 +2,6 @@ package com.wood.routingMode;
 
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.concurrent.TimeoutException;
 
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.CancelCallback;
