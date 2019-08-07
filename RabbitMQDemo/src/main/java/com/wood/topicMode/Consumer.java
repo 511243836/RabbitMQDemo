@@ -1,4 +1,4 @@
-package com.wood.routingMode;
+package com.wood.topicMode;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -20,20 +20,19 @@ public class Consumer {
 		Connection c = f.newConnection();
 		Channel ch = c.createChannel();
 
-		// 定义名字为 direct_logs 的交换机, 它的类型是 "direct"
-		ch.exchangeDeclare("direct_logs", BuiltinExchangeType.DIRECT);
+		ch.exchangeDeclare("topic_logs", BuiltinExchangeType.TOPIC);
 
 		// 自动生成对列名,
 		// 非持久,独占,自动删除
 		String queueName = ch.queueDeclare().getQueue();
 
-		System.out.println("输入接收的日志级别,用空格隔开:");
+		System.out.println("输入bindingKey,用空格隔开:");
 		String[] a = new Scanner(System.in).nextLine().split("\\s");
 
-		// 把该队列,绑定到 direct_logs 交换机
+		// 把该队列,绑定到 topic_logs 交换机
 		// 允许使用多个 bindingKey
-		for (String level : a) {
-			ch.queueBind(queueName, "direct_logs", level);
+		for (String bindingKey : a) {
+			ch.queueBind(queueName, "topic_logs", bindingKey);
 		}
 
 		System.out.println("等待接收数据");
